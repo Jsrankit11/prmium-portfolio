@@ -55,7 +55,7 @@ export default function Footer() {
               ANKIT<span className="text-neon-cyan">.</span>
             </a>
             <p className="font-body text-xs text-[var(--color-muted)] max-w-xs leading-relaxed">
-              Full Stack Developer & Data Analyst. Creating digital experiences for a web-centric future.
+              Full Stack Developer & Data Analytics. Creating digital experiences for a web-centric future.
             </p>
           </div>
 

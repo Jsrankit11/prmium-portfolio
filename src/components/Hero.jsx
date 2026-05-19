@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaDownload } from 'react-icons/fa';
 import { FiMessageSquare } from 'react-icons/fi';
 
-const words = ['React Developer', 'Backend Developer', 'Data Analyst', 'AI Enthusiast'];
+const words = ['React Developer', 'Backend Developer', 'Data Analytics', 'AI Enthusiast'];
 
 export default function Hero() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -90,11 +90,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold tracking-tight leading-none text-white select-none"
+            className="text-4xl sm:text-5xl md:text-6xl font-heading font-extrabold tracking-tight leading-tight text-white select-none"
           >
             Ankit Chaudhary
             <span className="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-blue-400 to-indigo-500 text-shadow-[0_0_30px_rgba(0,229,255,0.2)]">
-              Full Stack Developer <br className="hidden sm:inline" />& Data Analyst
+              Full Stack Developer <br className="hidden sm:inline" />& Data Analytics
             </span>
           </motion.h1>
 
