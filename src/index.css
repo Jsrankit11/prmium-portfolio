@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Sora', sans-serif;
+  --font-ui: 'Poppins', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+
+  --color-neon-cyan: #00E5FF;
+  --color-neon-cyan-dark: #00A6BA;
+  
+  --shadow-neon-cyan: 0 0 30px rgba(0, 229, 255, 0.25);
+  --shadow-neon-cyan-lg: 0 0 50px rgba(0, 229, 255, 0.45);
+  --shadow-neon-cyan-sm: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+:root {
+  --bg-main: #000000;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.07);
+  --color-text: #ffffff;
+  --color-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 229, 255, 0.2);
+  --grid-color: rgba(0, 229, 255, 0.025);
+  --grid-dot-color: rgba(255, 255, 255, 0.05);
+  --bg-sidebar: rgba(10, 15, 29, 0.85);
+  --header-bg: rgba(0, 0, 0, 0.7);
+}
+
+:root.light-mode {
+  --bg-main: #fafafa;
+  --bg-card: rgba(0, 0, 0, 0.02);
+  --bg-card-hover: rgba(0, 0, 0, 0.05);
+  --color-text: #0b0f19;
+  --color-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(0, 166, 186, 0.35);
+  --grid-color: rgba(0, 229, 255, 0.045);
+  --grid-dot-color: rgba(0, 0, 0, 0.05);
+  --bg-sidebar: rgba(255, 255, 255, 0.9);
+  --header-bg: rgba(250, 250, 250, 0.85);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: none; /* Hide default cursor for custom cursor experience */
+}
+
+@media (max-width: 768px) {
+  * {
+    cursor: auto !important; /* Restore normal cursor on mobile */
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--color-text);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.6);
+}
+
+/* Selection Highlight */
+::selection {
+  background: rgba(0, 229, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glow);
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+}
+
+/* Neon Borders */
+.neon-border-glow {
+  border: 1px solid var(--border-glow);
+  box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.05), 0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+/* Background Grid Overlay */
+.grid-bg-overlay {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  pointer-events: none;
+}
+
+.dot-bg-overlay {
+  background-image: radial-gradient(var(--grid-dot-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Text Glow */
+.text-neon-glow {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5), 0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+/* Custom Animation Classes */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-neon {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+    border-color: rgba(0, 229, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.5);
+    border-color: rgba(0, 229, 255, 0.6);
+  }
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon 3s infinite;
+}
+
+/* Infinite Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Mouse Glow Backlight */
+.mouse-glow-bg {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, transparent 70%);
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* Three.js Canvas Container */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Biometric HUD Photo Scanner Scanline */
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+/* Typewriter Cursor Blinking */
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: #00E5FF }
+}
+
+/* Hover Shine Sweep Effect */
+@keyframes shine {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
