@@ -9,16 +9,18 @@ export default function Footer() {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Console', href: '#terminal' },
     { name: 'Services', href: '#services' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Certifications', href: '#certifications' },
+    { name: 'Reviews', href: '#testimonials' },
+    { name: 'Credentials', href: '#certifications' },
+    { name: 'Guestbook', href: '#guestbook' },
     { name: 'Contact', href: '#contact' },
   ];
 
   const socialLinks = [
     { icon: <FaLinkedinIn />, url: 'https://linkedin.com/in/ankit-chaudhary-b3555a322', color: 'hover:text-[#0077b5] hover:border-[#0077b5]/30' },
     { icon: <FaGithub />, url: 'https://github.com/jsrankit11', color: 'hover:text-[#ffffff] hover:border-[#ffffff]/30' },
-    { icon: <FaInstagram />, url: 'https://instagram.com/instaholic_ankit', color: 'hover:text-[#e1306c] hover:border-[#e1306c]/30' },
+    { icon: <FaInstagram />, url: 'https://instagram.com/index_ankit', color: 'hover:text-[#e1306c] hover:border-[#e1306c]/30' },
     { icon: <FaWhatsapp />, url: 'https://wa.me/918081039242', color: 'hover:text-[#25d366] hover:border-[#25d366]/30' },
   ];
 

@@ -1,0 +1,16 @@
+{
+  "name": "Ankit Chaudhary | Full Stack Developer & Data Analytics Portfolio",
+  "short_name": "Ankit Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}

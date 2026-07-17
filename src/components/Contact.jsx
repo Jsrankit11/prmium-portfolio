@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
 import { FaWhatsapp, FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const formRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState({ success: null, message: '' });
@@ -24,7 +26,6 @@ export default function Contact() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Basic Validation
     if (!formFields.user_name || !formFields.user_email || !formFields.message) {
       setStatus({ success: false, message: 'Please fill in all mandatory fields (Name, Email, Message).' });
       return;
@@ -33,17 +34,12 @@ export default function Contact() {
     setLoading(true);
     setStatus({ success: null, message: '' });
 
-    // =======================================================
-    // EMAILJS INTEGRATION
-    // Replace placeholders with your own EmailJS credentials:
-    // Service ID, Template ID, Public Key
-    // =======================================================
     const SERVICE_ID = 'service_placeholder';
     const TEMPLATE_ID = 'template_placeholder';
     const PUBLIC_KEY = 'public_key_placeholder';
 
     if (SERVICE_ID === 'service_placeholder' || TEMPLATE_ID === 'template_placeholder' || PUBLIC_KEY === 'public_key_placeholder') {
-      // Mocking submission for demonstration purposes since placeholders are active
+      // Mocking submission
       setTimeout(() => {
         setLoading(false);
         setStatus({ 
@@ -94,7 +90,7 @@ export default function Contact() {
   const socialLinks = [
     { icon: <FaLinkedinIn />, url: 'https://linkedin.com/in/ankit-chaudhary-b3555a322', color: 'hover:text-[#0077b5] hover:border-[#0077b5]/30' },
     { icon: <FaGithub />, url: 'https://github.com/jsrankit11', color: 'hover:text-[#ffffff] hover:border-[#ffffff]/30' },
-    { icon: <FaInstagram />, url: 'https://instagram.com/instaholic_ankit', color: 'hover:text-[#e1306c] hover:border-[#e1306c]/30' },
+    { icon: <FaInstagram />, url: 'https://instagram.com/index_ankit', color: 'hover:text-[#e1306c] hover:border-[#e1306c]/30' },
     { icon: <FaWhatsapp />, url: 'https://wa.me/918081039242', color: 'hover:text-[#25d366] hover:border-[#25d366]/30' },
   ];
 
@@ -114,7 +110,7 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl font-heading font-extrabold text-white tracking-tight"
           >
-            Get In <span className="text-neon-cyan text-shadow-[0_0_15px_rgba(0,229,255,0.3)]">Touch</span>
+            {t('contact_title')} <span className="text-neon-cyan text-shadow-[0_0_15px_rgba(0,229,255,0.3)]">{t('contact_title_span')}</span>
           </motion.h2>
           <motion.div 
             initial={{ width: 0 }}
@@ -166,17 +162,16 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.25 }}
               className="glass-panel p-6 rounded-2xl border-white/5 text-left space-y-6"
             >
-              <h3 className="text-sm font-heading font-extrabold text-white tracking-widest uppercase">
-                QUICK COMMUNICATIONS:
+              <h3 className="text-xs font-heading font-extrabold text-white tracking-widest uppercase animate-pulse">
+                {t('contact_lbl_quick')}
               </h3>
               
-              {/* Communication Button rows */}
               <div className="grid grid-cols-2 gap-4.5">
                 <a
                   href="https://wa.me/918081039242"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3 px-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/40 text-xs font-heading font-bold tracking-wider uppercase text-center flex items-center justify-center space-x-2 transition-all duration-300 hover:scale-[1.03]"
+                  className="py-3 px-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-emerald-450 hover:bg-emerald-500/10 hover:border-emerald-500/40 text-xs font-heading font-bold tracking-wider uppercase text-center flex items-center justify-center space-x-2 transition-all duration-300 hover:scale-[1.03]"
                 >
                   <FaWhatsapp className="text-base" />
                   <span>WHATSAPP</span>
@@ -221,7 +216,7 @@ export default function Contact() {
                   {/* Name Input */}
                   <div className="flex flex-col space-y-1.5">
                     <label htmlFor="user_name" className="text-xs font-mono text-[var(--color-muted)] uppercase tracking-wider">
-                      Your Name *
+                      {t('contact_lbl_name')}
                     </label>
                     <input
                       type="text"
@@ -231,14 +226,14 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       placeholder="e.g. Ankit Chaudhary"
-                      className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/40 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)]"
+                      className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/45 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)]"
                     />
                   </div>
 
                   {/* Email Input */}
                   <div className="flex flex-col space-y-1.5">
                     <label htmlFor="user_email" className="text-xs font-mono text-[var(--color-muted)] uppercase tracking-wider">
-                      Your Email *
+                      {t('contact_lbl_email')}
                     </label>
                     <input
                       type="email"
@@ -248,7 +243,7 @@ export default function Contact() {
                       onChange={handleInputChange}
                       required
                       placeholder="e.g. client@domain.com"
-                      className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/40 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)]"
+                      className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/45 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)]"
                     />
                   </div>
                 </div>
@@ -256,7 +251,7 @@ export default function Contact() {
                 {/* Subject Input */}
                 <div className="flex flex-col space-y-1.5">
                   <label htmlFor="subject" className="text-xs font-mono text-[var(--color-muted)] uppercase tracking-wider">
-                    Subject
+                    {t('contact_lbl_subject')}
                   </label>
                   <input
                     type="text"
@@ -265,14 +260,14 @@ export default function Contact() {
                     value={formFields.subject}
                     onChange={handleInputChange}
                     placeholder="Project consultation, query..."
-                    className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/40 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)]"
+                    className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/45 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)]"
                   />
                 </div>
 
                 {/* Message Input */}
                 <div className="flex flex-col space-y-1.5">
                   <label htmlFor="message" className="text-xs font-mono text-[var(--color-muted)] uppercase tracking-wider">
-                    Message Details *
+                    {t('contact_lbl_message')}
                   </label>
                   <textarea
                     id="message"
@@ -282,16 +277,16 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     placeholder="Tell me about your business goal or request..."
-                    className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/40 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] resize-none"
+                    className="px-4 py-3 rounded-xl border border-[var(--border-color)] bg-white/5 dark:bg-black/45 text-white placeholder-white/20 text-sm focus:border-neon-cyan focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(0,229,255,0.1)] resize-none"
                   />
                 </div>
 
-                {/* Status response element */}
+                {/* Status response */}
                 {status.message && (
                   <div 
                     className={`p-3.5 rounded-xl border text-xs font-body leading-normal ${
                       status.success 
-                        ? 'border-emerald-500/20 bg-emerald-500/5 text-emerald-400' 
+                        ? 'border-emerald-500/20 bg-emerald-500/5 text-emerald-450' 
                         : 'border-red-500/20 bg-red-500/5 text-red-455'
                     }`}
                   >
@@ -303,11 +298,11 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full relative px-6 py-4.5 rounded-xl font-heading text-xs font-bold tracking-wider text-black bg-neon-cyan shadow-[0_0_15px_rgba(0,229,255,0.2)] hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] transition-all duration-300 flex items-center justify-center space-x-2.5 group overflow-hidden disabled:opacity-50 disabled:pointer-events-none"
+                  className="w-full relative px-6 py-4 rounded-xl font-heading text-xs font-bold tracking-wider text-black bg-neon-cyan shadow-[0_0_15px_rgba(0,229,255,0.2)] hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] transition-all duration-300 flex items-center justify-center space-x-2.5 group overflow-hidden disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
                 >
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-[shine_1.5s_infinite]" />
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/35 to-transparent -translate-x-full group-hover:animate-[shine_1.5s_infinite]" />
                   <FiSend className="w-4 h-4" />
-                  <span>{loading ? 'TRANSMITTING...' : 'TRANSMIT MESSAGE'}</span>
+                  <span>{loading ? t('contact_btn_sending') : t('contact_btn_submit')}</span>
                 </button>
               </form>
             </motion.div>

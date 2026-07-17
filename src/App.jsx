@@ -5,20 +5,29 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
+import Education from './components/Education';
+import Achievements from './components/Achievements';
 import Services from './components/Services';
 import Testimonials from './components/Testimonials';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ParticleBackground from './components/ParticleBackground';
+import ThreeBackground from './components/ThreeBackground';
 import CustomCursor from './components/CustomCursor';
 import Loader from './components/Loader';
+import AudioVisualizer from './components/AudioVisualizer';
+import TerminalConsole from './components/TerminalConsole';
+import SystemLogsGuestbook from './components/SystemLogsGuestbook';
+import AIChatbot from './components/AIChatbot';
+import VoiceNavigation from './components/VoiceNavigation';
+
+import { LanguageProvider } from './context/LanguageContext';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FiArrowUp } from 'react-icons/fi';
 
-export default function App() {
+function MainAppContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -31,7 +40,7 @@ export default function App() {
       easing: 'ease-out-quad',
     });
 
-    // Scroll percentage tracking for progress bar and Back-To-Top button
+    // Scroll percentage tracking
     const handleScroll = () => {
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       if (totalScroll > 0) {
@@ -61,8 +70,11 @@ export default function App() {
           {/* Custom Cursor Trail */}
           <CustomCursor />
 
-          {/* Interactive Particle Backdrop Canvas */}
-          <ParticleBackground />
+          {/* Floating Audio Ambient Waveform Widget */}
+          <AudioVisualizer />
+
+          {/* Interactive 3D Background Canvas (Three.js) */}
+          <ThreeBackground />
 
           {/* Fixed Glowing Scroll Progress Bar */}
           <div 
@@ -80,14 +92,24 @@ export default function App() {
             <Skills />
             <Projects />
             <Experience />
+            <Education />
+            <Achievements />
+            <TerminalConsole />
             <Services />
             <Testimonials />
             <Certifications />
+            <SystemLogsGuestbook />
             <Contact />
           </main>
 
           {/* Footer branding */}
           <Footer />
+
+          {/* AI Assistant Chatbot widget */}
+          <AIChatbot />
+
+          {/* Voice Navigation Speech Recognition widget */}
+          <VoiceNavigation />
 
           {/* Back-To-Top floating action button */}
           <button
@@ -102,5 +124,13 @@ export default function App() {
         </div>
       )}
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <MainAppContent />
+    </LanguageProvider>
   );
 }
